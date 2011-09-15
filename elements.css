@@ -1,0 +1,84 @@
+#jtools-interface {
+	bottom: 0px;
+	z-index: 100001;
+	margin: 0px;
+	position: fixed;
+	background-color: #eee;
+	border: 1px solid #aaa;
+	-webkit-box-shadow: -1px 1px 4px #000;
+	color: #333;
+}
+
+#jtools-interface.on #jtools-path {
+	padding: 3px;
+	float: left;
+	width: 90%;
+}
+
+#jtools-interface.off {
+	right: 0px;
+}
+#jtools-interface.on {
+	left: 0px;
+	width: 100%;
+}
+
+#jtools-cpanel {
+	margin: 3px;
+	float:right;
+}
+#jtools-interface.on #jtools-cpanel {
+	border-left: 1px ridge #ccc;
+	padding-left: 3px;
+	height: 100%;
+}
+#jtools-copy {
+	display: none;
+}
+#jtools-interface.on #jtools-copy {
+	display:block;
+}
+
+.jtools-button {
+	background-color: #ddd;
+	border: 1px solid #aaa;
+	-webkit-border-radius: 2px;
+	float: left;
+	padding: 1px 2px;
+	margin: 1px;
+	cursor: pointer;
+}
+.jtools-button.disabled {
+	background-color: #ccc;
+	color: #888;
+	border: 1px solid #bbb;
+}
+.jtools-button.hover {
+	background-color: #fff;
+}
+.jtools-space {
+	float: left;
+	padding: 1px 6px;
+}
+
+/****
+ * Classes used for highlighting/selecting
+ */
+
+.jtools-executed {
+	outline: 2px inset yellow;
+}
+
+.jtools-highlighted {
+	outline: 1px inset red;
+	background-color: #FAD7DA;
+	background-image: none;
+}
+.jtools-selected {
+	outline: 3px inset red;
+	background-color: #FAD7DA;
+}
+.jtools-highlighted > *, .jtools-selected > * {
+	background-color: #FAD7DA;
+	background-image: none;
+}

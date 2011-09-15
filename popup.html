@@ -1,0 +1,76 @@
+<style>
+body {
+	font: 12px Verdana, arial, sans-serif;
+	overflow-x:hidden;
+}
+#info {
+	margin: 3px;
+}
+#jquery-sel {
+	-webkit-border-radius: 3px;
+	border: 1px solid #ccc;
+	padding: 5px;
+	margin: 3px;
+}
+.ok {
+	color: green;
+	font-weight: bold;
+}
+.error {
+	color: #B22222;
+	font-weight: bold;
+}
+#loader {
+	display:none;
+	font-size: 9px;
+	color: #aaa;
+	margin: 3px;
+}
+#loader img {
+	margin-right: 3px;
+}
+</style>
+
+<script type="text/javascript">
+var to;
+function keyhandler(input) {
+	var respondTo = document.getElementById('info');
+	var loader = document.getElementById('loader');
+	loader.style.display = 'block';
+	respondTo.style.display = 'none';
+	if (to) {
+		clearTimeout(to);
+	}
+	to = setTimeout(function(){
+		sendSelector(input,respondTo,loader);
+	},500);
+}
+
+function sendSelector(input,p,loader) {
+	chrome.tabs.getSelected(null, function(tab) {
+		// Send a request to the content script.
+		chrome.tabs.sendRequest(tab.id, {action: "executeJQuerySelector",selector:input.value}, function(response) {
+			if (response.exec == true) {
+				if (response.length == 0) {
+					p.innerHTML = '<span class="error">No elements found</span>';
+				} else if (response.length == 1) {
+					p.innerHTML = '<span class="ok">Found 1 element</span> (highlighted)';
+				} else {
+					p.innerHTML = '<span class="ok">Found '+response.length+' elements</span> (highlighted)';
+				}
+			} else {
+				p.innerHTML = '<span class="error">Query error</span>';
+			}
+			p.style.display = 'block';
+			loader.style.display = 'none';
+		});
+	});
+}
+</script>
+
+<b>Enter jQuery selector: </b><textarea id="jquery-sel" onkeydown="keyhandler(this)" cols="20" rows="6"></textarea>
+<p id="info"></p>
+<div id="loader">
+	<img src="images/loader.gif" />
+	Loading...
+</div>
