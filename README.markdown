@@ -2,13 +2,17 @@
 
 - **Version:** *0.1*
 - **Author:** *Jon Cairns (jon@joncairns.com)*
-- **Website:** *[http://joncairns.com]*
+- **Website:** *http://joncairns.com*
 
 ## Introduction
 
 jTools is an extension for the Google Chrome web browser, which allows for analysis
 of web pages using jQuery. You can either get jQuery selectors by clicking on page
 elements, or you can execute a selector to see whether anything matches.
+
+This can be used for anything, really, but it was created with web developers in mind:
+it can be useful to see how certain pages are built, and there doesn't seem to be
+any other extension out there that does it using jQuery selectors.
 
 ## How to install
 
